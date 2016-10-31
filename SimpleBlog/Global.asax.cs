@@ -19,6 +19,7 @@ namespace SimpleBlog
 
             // The database will be invoke at the begining of our application
             Database.Configure();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
 
         protected void Application_BeginRequest()

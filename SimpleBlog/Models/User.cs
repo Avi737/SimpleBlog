@@ -17,7 +17,13 @@ namespace SimpleBlog.Models
         public virtual string Email { get; set; }
         public virtual string PasswordHash { get; set; }
 
-        // How the nHibernate turns the schema of the table into our User Class (mapping)
+        public virtual void SetPassword(string password)
+        {
+            PasswordHash = "IGNORE ME";
+        }
+    }
+
+    // How the nHibernate turns the schema of the table into our User Class (mapping)
 
         public class UserMap : ClassMapping<User>
         {
@@ -43,7 +49,6 @@ namespace SimpleBlog.Models
                       x.NotNullable(true);
                   });
             }
-        }
+       }
 
-    }
 }
