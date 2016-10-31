@@ -16,6 +16,20 @@ namespace SimpleBlog
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // The database will be invoke at the begining of our application
+            Database.Configure();
         }
+
+        protected void Application_BeginRequest()
+        {
+            Database.OpenSession(); // open up a session at the beginning of every request.
+        }
+
+        protected void Application_EndRequest()
+        {
+            Database.CloseSession(); // close the session at the end of the request.
+        }
+
     }
 }

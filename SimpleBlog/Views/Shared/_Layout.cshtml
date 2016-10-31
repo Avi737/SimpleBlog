@@ -13,33 +13,34 @@
 
 </head>
 <body>
-<header>
-    <h1>
-        <a href="@Url.RouteUrl("home")">Simple Blog</a>
-    </h1>
-    
-    @if (User.Identity.IsAuthenticated)
-    {
-        <p>Welcome back, @User.Identity.Name</p>
-        <a href="@Url.RouteUrl("login")">Logout</a>
-        if (User.IsInRole("admin"))
+    <header>
+        <h1>
+            <a href="@Url.RouteUrl("home")">Simple Blog</a>
+        </h1>
+
+        @if (User.Identity.IsAuthenticated)
         {
-            <a href="@Url.Action("index","Posts", new {area="admin"})">View posts in admin</a>
+            <p>Welcome back, @User.Identity.Name</p>
+            <a href="@Url.RouteUrl("login")">Logout</a>
+            if (User.IsInRole("admin"))
+            {
+                <a href="@Url.Action("index","Posts", new {area="admin" })">View posts in admin</a>
+            }
         }
-    }
-    else
-    {
-        <a href="@Url.RouteUrl("login")">Login</a>
-    }
+        else
+        {
+            <a href="@Url.RouteUrl("login")">Login</a>
+        }
 
 
+
+        @RenderBody()
+    </header>
     
-    @RenderBody()
-</header>
 </body>
 <footer>
     &copy; @DateTime.UtcNow.Year Me.
 </footer>
 @Scripts.Render("~/scripts")
-@RenderSection("Scripts",false)
+@RenderSection("Scripts", false)
 </html>
