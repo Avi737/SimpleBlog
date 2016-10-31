@@ -31,6 +31,9 @@ namespace SimpleBlog
             // add our mapping
             var mapper = new ModelMapper();
             mapper.AddMapping<UserMap>(); // tell the mapper about out mapping.
+            mapper.AddMapping<TagMap>();
+            mapper.AddMapping<PostMap>();
+
 
             config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());//telling our configuration about our mapper.
 
