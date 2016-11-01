@@ -30,6 +30,14 @@ namespace SimpleBlog.Models
         public virtual string Email { get; set; }
         public virtual string PasswordHash { get; set; }
 
+        //Roles going to contain every single role that user is part off.
+        public virtual IList<Role> Roles { get; set; }
+
+        public User()
+        {
+            Roles = new List<Role>();
+        }
+
         public virtual void SetPassword(string password)
         {
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(password, WorkFactor);
@@ -67,7 +75,22 @@ namespace SimpleBlog.Models
                       x.Column("password_hash");
                       x.NotNullable(true);
                   });
-            }
-       }
+
+
+            // Map the tag to the post in many to many fashion
+            // Bag is a collection, bags are the ability to relate an entity one or more time to another entity.
+            // the bag needs to know the name of the pivot table, the column that represent the user_id,role_id columns.
+            // we need to tell it, it's a many to many associsation.
+            Bag(x => x.Roles, x =>
+            {
+                x.Table("role_users");
+                x.Key(k => k.Column("user_id"));
+                
+            }, x => x.ManyToMany(k => k.Column("role_id")));
+
+
+
+        }
+    }
 
 }

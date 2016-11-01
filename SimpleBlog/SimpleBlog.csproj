@@ -177,6 +177,7 @@
     <Content Include="Areas\Admin\Views\Users\New.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_RoleEditor.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -217,6 +218,7 @@
     <Compile Include="Migrations\_001_UsersAndRoles.cs" />
     <Compile Include="Migrations\_002_PostsAndTags.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

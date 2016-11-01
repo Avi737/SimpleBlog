@@ -9,11 +9,8 @@ namespace SimpleBlog.Infrastructure
     {
         public override string[] GetRolesForUser(string username)
         {
-            if (username == "avi")
-
-                return new[] {"admin"};
-      
-            return new string[] {};
+            //For the current user it searching for all the roles, selecting out their name and returning and array.
+            return Auth.User.Roles.Select(role => role.Name).ToArray();
         }
 
         public override bool IsUserInRole(string username, string roleName)
