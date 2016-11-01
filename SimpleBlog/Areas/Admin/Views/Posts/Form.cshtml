@@ -21,7 +21,7 @@
             @Html.ValidationSummary()
             <div class="form-group">
                 @Html.LabelFor(f => f.Slug)
-                @Html.TextBoxFor(f => f.Slug, new { @class = "form-control" })
+                @Html.TextBoxFor(f => f.Slug, new { @class = "form-control", data_slug="#Title" })
             </div>
             @Html.ValidationSummary()
             <div class="form-group">
