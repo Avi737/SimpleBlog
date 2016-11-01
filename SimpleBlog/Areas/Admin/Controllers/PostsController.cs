@@ -32,6 +32,78 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 Posts =  new PageData<Post>(currentPostPage,totalPostCount,page,PostsPerPage)
             });
         }
+
+
+        public ActionResult New()
+        {
+            
+            // combining the new and the edit into the same view model.
+            return View("Form", new PostsIndex.PostsForm
+            {
+                isNew = true
+            });
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var post = Database.Session.Load<Post>(id);
+            if (post == null)
+                return HttpNotFound();
+
+            return View("Form", new PostsIndex.PostsForm
+            {
+                isNew =  false,
+                PostId = id,
+                Content = post.Content,
+                Slug = post.Slug,
+                Title = post.Title
+
+            });
+
+
+        }
+
+
+
+        [HttpPost,ValidateAntiForgeryToken]
+        public ActionResult Form(PostsIndex.PostsForm form)
+        {
+            form.isNew = form.PostId == null;
+            if(!ModelState.IsValid)
+                return View(form); // if there's an error we'll dispaly what is the error on the screen.
+
+
+            // New post
+            Post post;
+            if (form.isNew)
+            {
+                post = new Post
+                {
+                    CreatedAt = DateTime.Now,
+                    User = Auth.User
+                };
+            }
+            else
+            {
+                // Update existing post.
+                // if we're not publishing a new form, we need to get a form from the database.
+                post = Database.Session.Load<Post>(form.PostId);
+                if(post == null)
+                    return HttpNotFound();
+
+                post.UpdatedAt = DateTime.Now;
+            }
+
+            post.Title = form.Title;
+            post.Slug = form.Slug;
+            post.Content = form.Content;
+
+            // Save a new copy of our entity if it's already exist or updated is it does.
+            Database.Session.SaveOrUpdate(post);
+
+            return RedirectToAction("index");
+
+        }
         
     }
 }
