@@ -78,7 +78,7 @@ namespace SimpleBlog.Areas.Admin.Controllers
 
 
 
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost,ValidateAntiForgeryToken,ValidateInput(false)]
         public ActionResult Form(PostsIndex.PostsForm form)
         {
             form.isNew = form.PostId == null;

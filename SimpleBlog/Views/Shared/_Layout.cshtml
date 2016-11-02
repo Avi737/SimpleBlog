@@ -13,34 +13,33 @@
 
 </head>
 <body>
-    <header>
-        <h1>
-            <a href="@Url.RouteUrl("home")">Simple Blog</a>
+
+<div class="site-header">
+    <header class="container">
+        <h1 class="page-header">
+            <a href="@Url.RouteUrl("Home")">Blogly</a>
+            <small>a simple blog powered by Avi Hai</small>
         </h1>
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <p>Welcome back, @User.Identity.Name</p>
-            <a href="@Url.RouteUrl("login")">Logout</a>
-            if (User.IsInRole("admin"))
-            {
-                <a href="@Url.Action("index","Posts", new {area="admin" })">View posts in admin</a>
-            }
-        }
-        else
-        {
-            <a href="@Url.RouteUrl("login")">Login</a>
-        }
-
-
-
-        @RenderBody()
     </header>
+</div>
     
-</body>
-<footer>
-    &copy; @DateTime.UtcNow.Year Me.
-</footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                @RenderBody()
+            </div>
+            <div class="col-lg-4 sidebar">
+                @Html.Action("Sidebar","Layout")
+            </div>
+        </div>
+
+
+        <footer>
+            &copy; @DateTime.UtcNow.Year
+        </footer>
+    </div>
+
 @Scripts.Render("~/scripts")
 @RenderSection("Scripts", false)
+</body>
 </html>

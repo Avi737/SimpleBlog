@@ -37,6 +37,10 @@ namespace SimpleBlog
             //Home Route
             routes.MapRoute("Home", "", new {controller = "Posts", action = "Index"}, namespaces);
 
+            routes.MapRoute("Sidebar", "", new { Controller = "Layout", action = "Sidebar" }, namespaces);
+
+
+
         }
     }
 }
