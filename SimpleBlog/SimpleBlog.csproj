@@ -451,6 +451,8 @@
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
+    <Content Include="Scripts\jquery.timeago.js" />
+    <Content Include="Scripts\Frontend.js" />
     <Compile Include="ViewModels\Layout.cs" />
     <Compile Include="ViewModels\Posts.cs" />
     <Content Include="Areas\Admin\Scripts\PostEditor.js" />

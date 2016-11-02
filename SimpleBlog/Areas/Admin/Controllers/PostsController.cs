@@ -94,7 +94,7 @@ namespace SimpleBlog.Areas.Admin.Controllers
             {
                 post = new Post
                 {
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.UtcNow,
                     User = Auth.User
                 };
 
@@ -110,7 +110,7 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 if(post == null)
                     return HttpNotFound();
 
-                post.UpdatedAt = DateTime.Now;
+                post.UpdatedAt = DateTime.UtcNow;
 
                 foreach (var toAdd in selectedTags.Where(t=>!post.Tags.Contains(t)))
                     post.Tags.Add(toAdd);
