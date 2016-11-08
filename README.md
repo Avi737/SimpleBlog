@@ -1,6 +1,6 @@
 # SimpleBlog - ASP.NET MVC
 
-SimpleBlog - built with ASP.NET MVC, javascript, JQuery, nHibernate, MySQL.  
+SimpleBlog - built with ASP.NET MVC, javascript, JQuery, nHibernate, MySQL,Fluent Migrator.  
 
 
 Description:
